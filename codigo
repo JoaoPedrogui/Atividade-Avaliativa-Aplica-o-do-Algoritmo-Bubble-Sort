@@ -1,0 +1,65 @@
+
+#include <stdio.h>
+
+#define TAM 10
+
+// Exibe os preços armazenados no array.
+void exibirPrecos(float precos[], int tamanho) {
+    int i;
+
+    for (i = 0; i < tamanho; i++) {
+        printf("R$ %.2f\n", precos[i]);
+    }
+}
+
+// Ordena os preços utilizando o algoritmo Bubble Sort.
+void bubbleSort(float precos[], int tamanho) {
+    int i, j;
+    float temp;
+
+    // Cada passagem posiciona o maior elemento restante
+    // na sua posição correta.
+    for (i = 0; i < tamanho - 1; i++) {
+        // Compara os elementos adjacentes.
+        for (j = 0; j < tamanho - 1 - i; j++) {
+
+            // Troca os elementos quando estão fora
+            // da ordem crescente desejada.
+            if (precos[j] > precos[j + 1]) {
+                temp = precos[j];
+                precos[j] = precos[j + 1];
+                precos[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main(void) {
+    // Preços de dez produtos de supermercado.
+    float precos[TAM] = {
+        12.50, 5.99, 18.75, 3.49, 9.90,
+        25.00, 7.25, 15.30, 2.99, 11.40
+    };
+
+    printf("====================================\n");
+    printf(" SISTEMA DE ORDENACAO DE PRECOS\n");
+    printf("====================================\n");
+
+    printf("\nCriterio: ordem crescente (menor para maior).\n");
+
+    printf("\nPrecos antes da ordenacao:\n");
+    exibirPrecos(precos, TAM);
+
+    // Aplica o algoritmo Bubble Sort ao array.
+    bubbleSort(precos, TAM);
+
+    printf("\nPrecos apos a ordenacao:\n");
+    exibirPrecos(precos, TAM);
+
+    printf("\nMenor preco: R$ %.2f\n", precos[0]);
+    printf("Maior preco: R$ %.2f\n", precos[TAM - 1]);
+
+    printf("\nOrdenacao concluida com sucesso!\n");
+
+    return 0;
+}
